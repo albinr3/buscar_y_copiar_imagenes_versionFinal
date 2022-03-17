@@ -6,7 +6,7 @@ lista_codigos_buscar_final = []
 
 
 #Abrimos el archivo excel y cargamos todos los codigos en la lista vacia.
-data = xlrd.open_workbook("libro2.xls")
+data = xlrd.open_workbook("libro4.xls")
 sheet1 = data.sheet_by_index(0)
 
 for i in range(sheet1.nrows):
