@@ -1,10 +1,11 @@
-import shutil, xlrd, glob
+import shutil, xlrd, glob, xlwt
 
 #creamos una lista vacia para almacenar los codigos posteriormente
 files_to_find = []
 lista_codigos_buscar_final = []
 lista_verificacion= []
 lista_verificacion2= []
+lista_codigos_no_encontrados = []
 #Abrimos el archivo excel y cargamos todos los codigos en la lista vacia.
 data = xlrd.open_workbook("prueba.xls")
 sheet1 = data.sheet_by_index(0)
@@ -45,12 +46,28 @@ for u in lista_verificacion:
     if es_numero(u):
         lista_verificacion2.append(u)
 
-print("##################################################################################################################################################################################")
 #verifico cuales codigos no fueron encontrados y lo imprimo
-for codigos_no_encotrado in lista_final_final:
-    if codigos_no_encotrado not in lista_verificacion2:
-        print(f"El codigo: {codigos_no_encotrado} no fue encontrado!")
-    
+for codigo_no_encotrado in lista_final_final:
+    if codigo_no_encotrado not in lista_verificacion2:
+        lista_codigos_no_encontrados.append(codigo_no_encotrado)
+
+lista_codigos_no_encontrados = list(map(int, lista_codigos_no_encontrados))
+
+
+def extractDigits(lst): 
+    return [[el] for el in lst]
+
+lista_codigos_no_encontrados = extractDigits(lista_codigos_no_encontrados)
+
+workbook = xlwt.Workbook()
+sheet = workbook.add_sheet("hoja1")
+for i in range(0,len(lista_codigos_no_encontrados)):
+    for j in range(0,1):
+        sheet.write(i, j, lista_codigos_no_encontrados[i][j])
+workbook.save("archivos_no_encontrados.xls")         
+
+
+
             
 
     
