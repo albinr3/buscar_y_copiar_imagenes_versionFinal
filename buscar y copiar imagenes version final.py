@@ -21,8 +21,9 @@ lista_final_final = [ elem[:-2] for elem in lista_codigos_buscar_final ]
 
 #Buscamos los codigos en esta ruta
 input_path = askdirectory()
-ruta = input_path + "/**/*.jpg"
-busqueda_de_archivos=glob.glob(ruta, recursive=True)
+ruta_guardar_fotos = askdirectory()
+ruta_buscar_fotos = input_path + "/**/*.jpg"
+busqueda_de_archivos=glob.glob(ruta_buscar_fotos, recursive=True)
 
 #aqui si
 for i in busqueda_de_archivos:
@@ -30,7 +31,7 @@ for i in busqueda_de_archivos:
     for codigo_a_buscar in lista_final_final:
         if codigo_a_buscar in i.replace(".jpg", "").replace("\\", "_").split("_"):
 
-            shutil.copy(i, 'C:/Users/Albin Rodriguez/Pictures/carpeta4')
+            shutil.copy(i, ruta_guardar_fotos)
 
 
 #creo una funcion que sirve para verificar si un elemento es un numero
