@@ -6,6 +6,10 @@ lista_codigos_buscar_final = []
 lista_verificacion= []
 lista_verificacion2= []
 lista_codigos_no_encontrados = []
+a= "C:\Users\Albin Rodriguez\Desktop\FOTOS PRODUCTOS"
+ruta_fotos_productos = r"{}".format(a)
+agregar_extension = "\**\*.jpg"
+ruta_fotos_productos_final = ruta_fotos_productos + agregar_extension
 #Abrimos el archivo excel y cargamos todos los codigos en la lista vacia.
 data = xlrd.open_workbook("prueba.xls")
 sheet1 = data.sheet_by_index(0)
@@ -15,15 +19,14 @@ for j in range(sheet1.nrows):
 
 
 
-
-#
 for elementos in files_to_find:
     lista_codigos_buscar_final.append(str(elementos))
 lista_final_final = [ elem[:-2] for elem in lista_codigos_buscar_final ]    
 
+
 #Buscamos los codigos en esta ruta
 
-busqueda_de_archivos=glob.glob("C:/Users/Albin Rodriguez/Desktop/FOTOS PRODUCTOS/**/*.jpg", recursive=True)
+busqueda_de_archivos=glob.glob(ruta_fotos_productos_final, recursive=True)
 
 #aqui si
 for i in busqueda_de_archivos:
