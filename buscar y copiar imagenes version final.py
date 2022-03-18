@@ -1,4 +1,5 @@
-import shutil, xlrd, glob, xlwt
+import shutil, xlrd, glob, xlwt, tkinter
+from tkinter.filedialog import *
 
 #creamos una lista vacia para almacenar los codigos posteriormente
 files_to_find = []
@@ -14,16 +15,14 @@ for j in range(sheet1.nrows):
     files_to_find.append(sheet1.cell_value(j, 0))
 
 
-
-
-#
 for elementos in files_to_find:
     lista_codigos_buscar_final.append(str(elementos))
 lista_final_final = [ elem[:-2] for elem in lista_codigos_buscar_final ]    
 
 #Buscamos los codigos en esta ruta
-
-busqueda_de_archivos=glob.glob("C:/Users/Albin Rodriguez/Desktop/FOTOS PRODUCTOS/**/*.jpg", recursive=True)
+input_path = askdirectory()
+ruta = input_path + "/**/*.jpg"
+busqueda_de_archivos=glob.glob(ruta, recursive=True)
 
 #aqui si
 for i in busqueda_de_archivos:
