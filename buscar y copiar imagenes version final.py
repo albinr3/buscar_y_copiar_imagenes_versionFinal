@@ -1,5 +1,6 @@
-import shutil, xlrd, glob, xlwt, tkinter
+import shutil, xlrd, glob, xlwt, tkinter, os
 from tkinter.filedialog import *
+from tkinter import filedialog
 
 #creamos una lista vacia para almacenar los codigos posteriormente
 files_to_find = []
@@ -7,8 +8,11 @@ lista_codigos_buscar_final = []
 lista_verificacion= []
 lista_verificacion2= []
 lista_codigos_no_encontrados = []
+input("Presione ENTER para elegir el archivo excel que contiene los codigos: ")
+input_path_archivo_excel = filedialog.askopenfilename(initialdir = os.getcwd(), title = "Seleccionar archivo Excel", filetypes=(("Hoja de cálculo de Microsoft Excel 97-2003", "*.xls"), 
+                                                       ("all files", "*.*")))
 #Abrimos el archivo excel y cargamos todos los codigos en la lista vacia.
-data = xlrd.open_workbook("prueba.xls")
+data = xlrd.open_workbook(input_path_archivo_excel)
 sheet1 = data.sheet_by_index(0)
 
 for j in range(sheet1.nrows):
@@ -20,9 +24,10 @@ for elementos in files_to_find:
 lista_final_final = [ elem[:-2] for elem in lista_codigos_buscar_final ]    
 
 #Buscamos los codigos en esta ruta
-input("Presione ENTER para elegir la carpeta donde buscar las imagenes")
+
+input("Presione ENTER para elegir la carpeta donde buscar las imagenes: ")
 input_path_buscar_foto = askdirectory()
-input("Presione ENTER para elegir la carpeta de destino")
+input("Presione ENTER para elegir la carpeta de destino: ")
 ruta_guardar_fotos = askdirectory()
 ruta_buscar_fotos = input_path_buscar_foto + "/**/*.jpg"
 busqueda_de_archivos=glob.glob(ruta_buscar_fotos, recursive=True)
