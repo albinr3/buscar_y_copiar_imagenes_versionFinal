@@ -20,9 +20,11 @@ for elementos in files_to_find:
 lista_final_final = [ elem[:-2] for elem in lista_codigos_buscar_final ]    
 
 #Buscamos los codigos en esta ruta
-input_path = askdirectory()
+input("Presione ENTER para elegir la carpeta donde buscar las imagenes")
+input_path_buscar_foto = askdirectory()
+input("Presione ENTER para elegir la carpeta de destino")
 ruta_guardar_fotos = askdirectory()
-ruta_buscar_fotos = input_path + "/**/*.jpg"
+ruta_buscar_fotos = input_path_buscar_foto + "/**/*.jpg"
 busqueda_de_archivos=glob.glob(ruta_buscar_fotos, recursive=True)
 
 #aqui si
